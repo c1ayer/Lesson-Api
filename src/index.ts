@@ -6,7 +6,7 @@ const app = express();
 const path = require("path");
 const fs = require("fs");
 
-const filePath = path.join(__dirname, "rx.json");
+const filePath = path.join(__dirname, "lessons.json");
 
 app.use(cors());
 // const corsOptions={
