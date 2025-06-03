@@ -1,0 +1,32 @@
+[
+    {
+        "name": "Ibuprofen",
+        "dose": "200",
+        "unit": "mg",
+        "frequency": "every 6 hours"
+    },
+    {
+        "name": "Amoxicillin",
+        "dose": "500",
+        "unit": "mg",
+        "frequency": "every 8 hours"
+    },
+    {
+        "name": "Metformin",
+        "dose": "1000",
+        "unit": "mg",
+        "frequency": "twice daily"
+    },
+    {
+        "name": "Lisinopril",
+        "dose": "10",
+        "unit": "mg",
+        "frequency": "once daily"
+    },
+    {
+        "name": "Atorvastatin",
+        "dose": "40",
+        "unit": "mg",
+        "frequency": "once daily in the evening"
+    }
+]
