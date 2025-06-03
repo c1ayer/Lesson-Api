@@ -1,4 +1,4 @@
-import express, { Request, Response } from "express";
+import express from "express";
 import cors from "cors";
 import path from "path";
 import fs from "fs";
@@ -13,70 +13,63 @@ app.use(express.json());
 
 let lessonList: Lesson[] = [];
 
-// Load lessons from JSON file
+// Read file and parse JSON
 fs.readFile(filePath, "utf-8", (err, data) => {
   if (err) {
-    console.error("Unable to read file:", filePath);
+    console.error("Failed to load file:", err.message);
   } else {
     try {
       lessonList = JSON.parse(data);
-    } catch (parseError) {
-      console.error("Error parsing JSON:", parseError);
+    } catch (e) {
+      console.error("Invalid JSON format:");
     }
   }
 });
 
-// GET all lessons
-app.get("/", (_req: Request, res: Response): Response => {
-  return res.status(200).json(lessonList);
+app.get("/", (req, res) => {
+  res.status(200).json(lessonList);
 });
 
-// GET lesson by name
-app.get("/:name", (req: Request, res: Response): Response => {
-  const lesson = lessonList.find((c) => c.studentname === req.params.name);
+app.get("/:name", (req, res) => {
+  const lesson = lessonList.find((l) => l.studentname === req.params.name);
   if (lesson) {
-    return res.status(200).json(lesson);
+    res.status(200).json(lesson);
+  } else {
+    res.status(404).json({ error: "Lesson not found" });
   }
-  return res.status(404).json({ error: `Lesson: ${req.params.name} not found.` });
 });
 
-// POST a new lesson
-app.post("/", (req: Request, res: Response): Response => {
+app.post("/", (req, res) => {
   const { studentname, studentid, lessontime, lessondate, lessonid } = req.body;
   if (studentname && studentid && lessontime && lessondate && lessonid) {
     const newLesson: Lesson = { studentname, studentid, lessontime, lessondate, lessonid };
     lessonList.push(newLesson);
-    return res.status(201).json(newLesson);
+    res.status(201).json(newLesson);
+  } else {
+    res.status(400).json({ error: "Missing required fields" });
   }
-  return res.status(400).json({ error: "Missing fields in request body." });
 });
 
-// PUT to update a lesson by name
-app.put("/:name", (req: Request, res: Response): Response => {
-  const lesson = lessonList.find((c) => c.studentname === req.params.name);
+app.put("/:name", (req, res) => {
+  const lesson = lessonList.find((l) => l.studentname === req.params.name);
   if (lesson) {
-    const { studentname, studentid, lessontime, lessondate, lessonid } = req.body;
-    lesson.studentname = studentname;
-    lesson.studentid = studentid;
-    lesson.lessontime = lessontime;
-    lesson.lessondate = lessondate;
-    lesson.lessonid = lessonid;
-    return res.status(200).json(lesson);
+    Object.assign(lesson, req.body);
+    res.status(200).json(lesson);
+  } else {
+    res.status(404).json({ error: "Lesson not found" });
   }
-  return res.status(404).json({ error: `Lesson: ${req.params.name} not found.` });
 });
 
-// DELETE lesson by name
-app.delete("/:name", (req: Request, res: Response): Response => {
-  const index = lessonList.findIndex((c) => c.studentname === req.params.name);
+app.delete("/:name", (req, res) => {
+  const index = lessonList.findIndex((l) => l.studentname === req.params.name);
   if (index !== -1) {
     const deleted = lessonList.splice(index, 1);
-    return res.status(200).json(deleted);
+    res.status(200).json(deleted);
+  } else {
+    res.status(404).json({ error: "Lesson not found" });
   }
-  return res.status(404).json({ error: `Lesson: ${req.params.name} not found.` });
 });
 
-// Start server
 app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+  console.log(`Server running at http://localhost:${port}`);
 });

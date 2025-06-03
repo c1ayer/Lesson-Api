@@ -1,9 +1,18 @@
 [
     {
         "studentname": "Emerson Clay",
-        "studentid": "2",
+        "studentid": "002",
         "lessontime": "4:00 PM",
         "lessondate": "10/31/2025",
         "lessonid": "1"
-    }
+    },
+
+    {
+    "studentname": "Alice",
+    "studentid": "001",
+    "lessontime": "10:00",
+    "lessondate": "2025-06-03",
+    "lessonid": "L1"
+  }
+    
 ]
