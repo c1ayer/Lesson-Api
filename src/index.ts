@@ -73,3 +73,6 @@ app.delete("/:name", (req, res) => {
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
+
+
+//npx ts-node index.ts
