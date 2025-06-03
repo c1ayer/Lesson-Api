@@ -1,94 +1,82 @@
-const express = require("express");
-const cors=require("cors");
-const port = 3000;
+import express, { Request, Response } from "express";
+import cors from "cors";
+import path from "path";
+import fs from "fs";
+import { Lesson } from "./lessons";
 
 const app = express();
-const path = require("path");
-const fs = require("fs");
-
+const port = 3000;
 const filePath = path.join(__dirname, "lessons.json");
 
 app.use(cors());
-// const corsOptions={
-//     origin:['http://localhost:4200']
-// }
-const bodyParser = require("body-parser");
+app.use(express.json());
 
-app.use(bodyParser.json());
+let lessonList: Lesson[] = [];
 
-import { lessons } from './lessons';
-
-let rxList: lessons[] = [];
-
-fs.readFile(filePath, (err: any, data: any) => {
-    if (err) {
-        console.error("Unable to read file: " + filePath);
-    } else {
-        rxList = JSON.parse(data)
+// Load lessons from JSON file
+fs.readFile(filePath, "utf-8", (err, data) => {
+  if (err) {
+    console.error("Unable to read file:", filePath);
+  } else {
+    try {
+      lessonList = JSON.parse(data);
+    } catch (parseError) {
+      console.error("Error parsing JSON:", parseError);
     }
+  }
 });
 
-app.get("/", (req, resp) => {    
-    resp.status(200);
-    return resp.json(rxList);       
+// GET all lessons
+app.get("/", (_req: Request, res: Response): Response => {
+  return res.status(200).json(lessonList);
 });
 
-app.get("/:name", (req, resp) => {
-    const prescription = rxList.find(c => c.name == req.params.name);
-    
-    if (prescription) {
-        resp.status(200);
-        return resp.json(prescription);
-    }
-
-    resp.status(404);
-    return resp.json({error: `Prescription: ${req.params.name} not found.`});
+// GET lesson by name
+app.get("/:name", (req: Request, res: Response): Response => {
+  const lesson = lessonList.find((c) => c.studentname === req.params.name);
+  if (lesson) {
+    return res.status(200).json(lesson);
+  }
+  return res.status(404).json({ error: `Lesson: ${req.params.name} not found.` });
 });
 
-app.post("/", (req, resp) => {
-    // console.log(`body is ${JSON.stringify(req.body)}`);
-    // return resp.sendStatus(200);
-    const {name, dose,unit,frequency}=req.body;
-    if (name && dose && unit && frequency) {
-        const newEntry={name, dose,unit,frequency }
-        rxList.push(newEntry);
-        resp.status(200);
-        return resp.json(newEntry);
-    }
-
-    resp.status(404);
-    return resp.json({error: `Prescription with name: ${req.params.name} not found.`});
+// POST a new lesson
+app.post("/", (req: Request, res: Response): Response => {
+  const { studentname, studentid, lessontime, lessondate, lessonid } = req.body;
+  if (studentname && studentid && lessontime && lessondate && lessonid) {
+    const newLesson: Lesson = { studentname, studentid, lessontime, lessondate, lessonid };
+    lessonList.push(newLesson);
+    return res.status(201).json(newLesson);
+  }
+  return res.status(400).json({ error: "Missing fields in request body." });
 });
 
-app.put("/:name",(req,resp)=>{
-    const prescription = rxList.find(c => c.name == req.params.name);
-    
-    if (prescription) {
-        const {name, dose, unit, frequency}=req.body;
-        prescription.name=name;
-        prescription.dose=dose;
-        prescription.unit=unit;
-        prescription.frequency=frequency;
-        resp.status(200);
-        return resp.json(prescription);
-    }
-
-    resp.status(404);
-    return resp.json({error: `Prescription with name: ${req.params.name} not found.`});
+// PUT to update a lesson by name
+app.put("/:name", (req: Request, res: Response): Response => {
+  const lesson = lessonList.find((c) => c.studentname === req.params.name);
+  if (lesson) {
+    const { studentname, studentid, lessontime, lessondate, lessonid } = req.body;
+    lesson.studentname = studentname;
+    lesson.studentid = studentid;
+    lesson.lessontime = lessontime;
+    lesson.lessondate = lessondate;
+    lesson.lessonid = lessonid;
+    return res.status(200).json(lesson);
+  }
+  return res.status(404).json({ error: `Lesson: ${req.params.name} not found.` });
 });
 
-app.delete("/:name",(req,resp)=>{
-    const rxIndex = rxList.findIndex(c => c.name == req.params.name);
-    
-    if (rxIndex) {
-        const deleteIndex=rxList.splice(rxIndex,1);
-        resp.status(200);
-        return resp.json(deleteIndex);
-    }
-
-    resp.status(404);
-    return resp.json({error: `Prescription with name: ${req.params.name} not found.`});
+// DELETE lesson by name
+app.delete("/:name", (req: Request, res: Response): Response => {
+  const index = lessonList.findIndex((c) => c.studentname === req.params.name);
+  if (index !== -1) {
+    const deleted = lessonList.splice(index, 1);
+    return res.status(200).json(deleted);
+  }
+  return res.status(404).json({ error: `Lesson: ${req.params.name} not found.` });
 });
+
+// Start server
 app.listen(port, () => {
-    console.log(`Example express file server listening on port ${port}`);
+  console.log(`Server is running on http://localhost:${port}`);
 });

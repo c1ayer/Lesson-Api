@@ -1,32 +1,9 @@
 [
     {
-        "name": "Ibuprofen",
-        "dose": "200",
-        "unit": "mg",
-        "frequency": "every 6 hours"
-    },
-    {
-        "name": "Amoxicillin",
-        "dose": "500",
-        "unit": "mg",
-        "frequency": "every 8 hours"
-    },
-    {
-        "name": "Metformin",
-        "dose": "1000",
-        "unit": "mg",
-        "frequency": "twice daily"
-    },
-    {
-        "name": "Lisinopril",
-        "dose": "10",
-        "unit": "mg",
-        "frequency": "once daily"
-    },
-    {
-        "name": "Atorvastatin",
-        "dose": "40",
-        "unit": "mg",
-        "frequency": "once daily in the evening"
+        "studentname": "Emerson Clay",
+        "studentid": "2",
+        "lessontime": "4:00 PM",
+        "lessondate": "10/31/2025",
+        "lessonid": "1"
     }
 ]

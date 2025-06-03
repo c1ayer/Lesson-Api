@@ -16,9 +16,16 @@
     "url": "https://github.com/c1ayer/exampleAPI/issues"
   },
   "homepage": "https://github.com/c1ayer/exampleAPI#readme",
-  "description": "",
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^5.1.0"
-  }
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.18",
+    "@types/express": "^5.0.2",
+    "@types/node": "^22.15.29",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  },
+  "description": ""
 }

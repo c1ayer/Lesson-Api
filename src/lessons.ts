@@ -1,6 +1,7 @@
-export interface lessons {
-    name:string;
-    dose:number;
-    unit:string;
-    frequency:string;
+export interface Lesson {
+  studentname: string;
+  studentid: string;
+  lessontime: string;
+  lessondate: string;
+  lessonid: string;
 }
