@@ -40,13 +40,63 @@ app.get("/:name", (req, res) => {
 });
 
 app.post("/", (req, res) => {
-  const { studentname, studentid, lessontime, lessondate, lessonid } = req.body;
-  if (studentname && studentid && lessontime && lessondate && lessonid) {
-    const newLesson: Lesson = { studentname, studentid, lessontime, lessondate, lessonid };
+  const {
+    is_parent_scheduling_allowed,
+    lesson_time,
+    replaced_student_program_id,
+    instructor_id,
+    room_id,
+    lesson_id,
+    teacher_report_time,
+    did_student_attend,
+    is_payable_prep,
+    student_program_id,
+    studio_id,
+    lesson_status,
+    did_teacher_attend,
+    studentname,
+    studentid,
+    lessontime_display,
+    lessondate_display,
+  } = req.body;
+
+  // Simple validation: require these critical fields
+  if (
+    typeof is_parent_scheduling_allowed === "boolean" &&
+    typeof lesson_time === "string" &&
+    typeof instructor_id === "number" &&
+    typeof room_id === "number" &&
+    typeof lesson_id === "number" &&
+    typeof studio_id === "number" &&
+    typeof studentname === "string" &&
+    typeof studentid === "string" &&
+    typeof lessontime_display === "string" &&
+    typeof lessondate_display === "string"
+  ) {
+    const newLesson: Lesson = {
+      is_parent_scheduling_allowed,
+      lesson_time,
+      replaced_student_program_id: replaced_student_program_id ?? null,
+      instructor_id,
+      room_id,
+      lesson_id,
+      teacher_report_time: teacher_report_time ?? null,
+      did_student_attend: did_student_attend ?? null,
+      is_payable_prep: is_payable_prep ?? null,
+      student_program_id: student_program_id ?? null,
+      studio_id,
+      lesson_status: lesson_status ?? null,
+      did_teacher_attend: did_teacher_attend ?? null,
+      studentname,
+      studentid,
+      lessontime_display,
+      lessondate_display,
+    };
+
     lessonList.push(newLesson);
     res.status(201).json(newLesson);
   } else {
-    res.status(400).json({ error: "Missing required fields" });
+    res.status(400).json({ error: "Missing or invalid required fields" });
   }
 });
 
@@ -73,6 +123,3 @@ app.delete("/:name", (req, res) => {
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
-
-
-//npx ts-node index.ts
