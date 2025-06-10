@@ -14,9 +14,8 @@ export interface Lesson {
   lesson_status: string | null;
   did_teacher_attend: boolean | null;
 
-  // Optional derived/display fields
+  // new api fields
   studentname: string;
   studentid: string;
-  lessontime_display: string; // Formatted time like "4:00 PM"
-  lessondate_display: string; // Formatted date like "May 1, 2023"
+
 }

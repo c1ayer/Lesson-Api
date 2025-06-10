@@ -14,9 +14,7 @@
     "lesson_status": "completed",
     "did_teacher_attend": true,
     "studentname": "Alice Johnson",
-    "studentid": "stu001",
-    "lessontime_display": "4:00 PM",
-    "lessondate_display": "May 1, 2023"
+    "studentid": "stu001"
   },
   {
     "is_parent_scheduling_allowed": true,
@@ -33,9 +31,7 @@
     "lesson_status": "missed",
     "did_teacher_attend": true,
     "studentname": "Brian Smith",
-    "studentid": "stu002",
-    "lessontime_display": "9:30 AM",
-    "lessondate_display": "May 2, 2023"
+    "studentid": "stu002"
   },
   {
     "is_parent_scheduling_allowed": false,
@@ -52,9 +48,7 @@
     "lesson_status": "completed",
     "did_teacher_attend": true,
     "studentname": "Catherine Lee",
-    "studentid": "stu003",
-    "lessontime_display": "2:00 PM",
-    "lessondate_display": "May 3, 2023"
+    "studentid": "stu003"
   },
   {
     "is_parent_scheduling_allowed": true,
@@ -71,9 +65,7 @@
     "lesson_status": null,
     "did_teacher_attend": null,
     "studentname": "David Miller",
-    "studentid": "stu004",
-    "lessontime_display": "11:15 AM",
-    "lessondate_display": "May 4, 2023"
+    "studentid": "stu004"
   },
   {
     "is_parent_scheduling_allowed": false,
@@ -90,8 +82,6 @@
     "lesson_status": "completed",
     "did_teacher_attend": true,
     "studentname": "Emily Davis",
-    "studentid": "stu005",
-    "lessontime_display": "5:45 PM",
-    "lessondate_display": "May 5, 2023"
+    "studentid": "stu005"
   }
 ]

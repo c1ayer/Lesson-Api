@@ -55,9 +55,7 @@ app.post("/", (req, res) => {
     lesson_status,
     did_teacher_attend,
     studentname,
-    studentid,
-    lessontime_display,
-    lessondate_display,
+    studentid
   } = req.body;
 
   // Simple validation: require these critical fields
@@ -69,9 +67,7 @@ app.post("/", (req, res) => {
     typeof lesson_id === "number" &&
     typeof studio_id === "number" &&
     typeof studentname === "string" &&
-    typeof studentid === "string" &&
-    typeof lessontime_display === "string" &&
-    typeof lessondate_display === "string"
+    typeof studentid === "string"
   ) {
     const newLesson: Lesson = {
       is_parent_scheduling_allowed,
@@ -88,9 +84,7 @@ app.post("/", (req, res) => {
       lesson_status: lesson_status ?? null,
       did_teacher_attend: did_teacher_attend ?? null,
       studentname,
-      studentid,
-      lessontime_display,
-      lessondate_display,
+      studentid
     };
 
     lessonList.push(newLesson);
