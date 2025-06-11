@@ -13,7 +13,7 @@ app.use(express.json());
 
 let lessonList: Lesson[] = [];
 
-// Read file and parse JSON
+// Load lessons from file
 fs.readFile(filePath, "utf-8", (err, data) => {
   if (err) {
     console.error("Failed to load file:", err.message);
@@ -21,15 +21,17 @@ fs.readFile(filePath, "utf-8", (err, data) => {
     try {
       lessonList = JSON.parse(data);
     } catch (e) {
-      console.error("Invalid JSON format:");
+      console.error("Invalid JSON format");
     }
   }
 });
 
+// GET all lessons
 app.get("/", (req, res) => {
   res.status(200).json(lessonList);
 });
 
+// GET single lesson by student name
 app.get("/:name", (req, res) => {
   const lesson = lessonList.find((l) => l.studentname === req.params.name);
   if (lesson) {
@@ -39,6 +41,7 @@ app.get("/:name", (req, res) => {
   }
 });
 
+// POST new lesson
 app.post("/", (req, res) => {
   const {
     is_parent_scheduling_allowed,
@@ -55,10 +58,14 @@ app.post("/", (req, res) => {
     lesson_status,
     did_teacher_attend,
     studentname,
-    studentid
+    studentid,
+    // New fields
+    lesson_type,
+    instructor_name,
+    instrument
   } = req.body;
 
-  // Simple validation: require these critical fields
+  // Validation for required fields
   if (
     typeof is_parent_scheduling_allowed === "boolean" &&
     typeof lesson_time === "string" &&
@@ -84,7 +91,12 @@ app.post("/", (req, res) => {
       lesson_status: lesson_status ?? null,
       did_teacher_attend: did_teacher_attend ?? null,
       studentname,
-      studentid
+      studentid,
+
+      // New fields
+      lesson_type: lesson_type ?? null,
+      instructor_name: instructor_name ?? null,
+      instrument: instrument ?? null
     };
 
     lessonList.push(newLesson);
@@ -94,6 +106,7 @@ app.post("/", (req, res) => {
   }
 });
 
+// PUT (update) lesson by student name
 app.put("/:name", (req, res) => {
   const lesson = lessonList.find((l) => l.studentname === req.params.name);
   if (lesson) {
@@ -104,6 +117,7 @@ app.put("/:name", (req, res) => {
   }
 });
 
+// DELETE lesson by student name
 app.delete("/:name", (req, res) => {
   const index = lessonList.findIndex((l) => l.studentname === req.params.name);
   if (index !== -1) {

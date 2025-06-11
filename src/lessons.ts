@@ -17,5 +17,8 @@ export interface Lesson {
   // new api fields
   studentname: string;
   studentid: string;
+  lesson_type: string | null;
+  instructor_name: string | null;
+  instrument: string | null;
 
 }
