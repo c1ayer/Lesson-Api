@@ -1,5 +1,4 @@
 export interface Lesson {
-  // Original API fields
   is_parent_scheduling_allowed: boolean;
   lesson_time: string; // Full ISO date string
   replaced_student_program_id: number | null;
@@ -14,7 +13,7 @@ export interface Lesson {
   lesson_status: string | null;
   did_teacher_attend: boolean | null;
 
-  // new api fields
+
   studentname: string;
   studentid: string;
   lesson_type: string | null;

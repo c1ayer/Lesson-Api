@@ -92,8 +92,6 @@ app.post("/", (req, res) => {
       did_teacher_attend: did_teacher_attend ?? null,
       studentname,
       studentid,
-
-      // New fields
       lesson_type: lesson_type ?? null,
       instructor_name: instructor_name ?? null,
       instrument: instrument ?? null
