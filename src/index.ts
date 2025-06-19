@@ -41,6 +41,31 @@ app.get("/:name", (req, res) => {
   }
 });
 
+/* get the FIRST lesson by email
+
+app.get("/email/:email", (req, res) => {
+  const lesson = lessonList.find((l) => l.email === req.params.email);
+  if (lesson) {
+    res.status(200).json(lesson);
+  } else {
+    res.status(404).json({ error: "Lesson not found by email" });
+  }
+});
+
+*/
+
+// GET all lessons by email
+app.get("/email/:email", (req, res) => {
+  const matchingLessons = lessonList.filter((l) => l.email === req.params.email);
+  if (matchingLessons.length > 0) {
+    res.status(200).json(matchingLessons);
+  } else {
+    res.status(404).json({ error: "No lessons found for this email" });
+  }
+});
+
+
+
 // POST new lesson
 app.post("/", (req, res) => {
   const {
@@ -59,10 +84,15 @@ app.post("/", (req, res) => {
     did_teacher_attend,
     studentname,
     studentid,
-    // New fields
+
+    // Existing new fields
     lesson_type,
     instructor_name,
-    instrument
+    instrument,
+
+    // Newly added fields
+    email,
+    password
   } = req.body;
 
   // Validation for required fields
@@ -93,10 +123,14 @@ app.post("/", (req, res) => {
       studentname,
       studentid,
 
-      // New fields
+      // Existing new fields
       lesson_type: lesson_type ?? null,
       instructor_name: instructor_name ?? null,
-      instrument: instrument ?? null
+      instrument: instrument ?? null,
+
+      // Newly added fields
+      email: email ?? null,
+      password: password ?? null
     };
 
     lessonList.push(newLesson);
@@ -105,6 +139,7 @@ app.post("/", (req, res) => {
     res.status(400).json({ error: "Missing or invalid required fields" });
   }
 });
+
 
 // PUT (update) lesson by student name
 app.put("/:name", (req, res) => {

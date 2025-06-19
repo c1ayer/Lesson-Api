@@ -20,5 +20,7 @@ export interface Lesson {
   lesson_type: string | null;
   instructor_name: string | null;
   instrument: string | null;
+  email: string | null;
+  password: string | null;
 
 }

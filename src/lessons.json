@@ -17,7 +17,9 @@
     "is_payable_prep": false,
     "student_program_id": 501,
     "lesson_status": "Attended",
-    "did_teacher_attend": true
+    "did_teacher_attend": true,
+    "email": "alice.johnson@example.com",
+    "password": "alice123"
   },
   {
     "lesson_id": 2,
@@ -37,7 +39,9 @@
     "is_payable_prep": false,
     "student_program_id": 501,
     "lesson_status": "Attended",
-    "did_teacher_attend": true
+    "did_teacher_attend": true,
+    "email": "alice.johnson@example.com",
+    "password": "alice123"
   },
   {
     "lesson_id": 3,
@@ -57,7 +61,9 @@
     "is_payable_prep": false,
     "student_program_id": 502,
     "lesson_status": "canceled",
-    "did_teacher_attend": true
+    "did_teacher_attend": true,
+    "email": "benjamin.lee@example.com",
+    "password": "benjamin456"
   },
   {
     "lesson_id": 4,
@@ -77,7 +83,9 @@
     "is_payable_prep": false,
     "student_program_id": 502,
     "lesson_status": "scheduled",
-    "did_teacher_attend": null
+    "did_teacher_attend": null,
+    "email": "benjamin.lee@example.com",
+    "password": "benjamin456"
   },
   {
     "lesson_id": 5,
@@ -97,7 +105,9 @@
     "is_payable_prep": false,
     "student_program_id": 503,
     "lesson_status": "missed",
-    "did_teacher_attend": true
+    "did_teacher_attend": true,
+    "email": "cynthia.okafor@example.com",
+    "password": "cynthia789"
   },
   {
     "lesson_id": 6,
@@ -117,7 +127,9 @@
     "is_payable_prep": false,
     "student_program_id": 503,
     "lesson_status": "scheduled",
-    "did_teacher_attend": null
+    "did_teacher_attend": null,
+    "email": "cynthia.okafor@example.com",
+    "password": "cynthia789"
   },
   {
     "lesson_id": 7,
@@ -137,7 +149,9 @@
     "is_payable_prep": false,
     "student_program_id": 504,
     "lesson_status": "scheduled",
-    "did_teacher_attend": null
+    "did_teacher_attend": null,
+    "email": "daniela.ruiz@example.com",
+    "password": "daniela000"
   },
   {
     "lesson_id": 8,
@@ -157,7 +171,9 @@
     "is_payable_prep": false,
     "student_program_id": 504,
     "lesson_status": "Attended",
-    "did_teacher_attend": true
+    "did_teacher_attend": true,
+    "email": "daniela.ruiz@example.com",
+    "password": "daniela000"
   },
   {
     "lesson_id": 9,
@@ -177,7 +193,9 @@
     "is_payable_prep": false,
     "student_program_id": 505,
     "lesson_status": "missed",
-    "did_teacher_attend": true
+    "did_teacher_attend": true,
+    "email": "marcus.wright@example.com",
+    "password": "marcus999"
   },
   {
     "lesson_id": 10,
@@ -197,7 +215,9 @@
     "is_payable_prep": false,
     "student_program_id": 505,
     "lesson_status": "scheduled",
-    "did_teacher_attend": null
+    "did_teacher_attend": null,
+    "email": "marcus.wright@example.com",
+    "password": "marcus999"
   },
   {
     "lesson_id": 11,
@@ -217,7 +237,9 @@
     "is_payable_prep": false,
     "student_program_id": 506,
     "lesson_status": "scheduled",
-    "did_teacher_attend": null
+    "did_teacher_attend": null,
+    "email": "noah.kim@example.com",
+    "password": "noahkim88"
   },
   {
     "lesson_id": 12,
@@ -237,9 +259,10 @@
     "is_payable_prep": false,
     "student_program_id": 506,
     "lesson_status": "Attended",
-    "did_teacher_attend": true
+    "did_teacher_attend": true,
+    "email": "noah.kim@example.com",
+    "password": "noahkim88"
   },
-  [
   {
     "lesson_id": 13,
     "studentid": "S004",
@@ -258,7 +281,9 @@
     "is_payable_prep": false,
     "student_program_id": 504,
     "lesson_status": "scheduled",
-    "did_teacher_attend": null
+    "did_teacher_attend": null,
+    "email": "liam.chen@example.com",
+    "password": "liamchen21"
   },
   {
     "lesson_id": 14,
@@ -278,7 +303,9 @@
     "is_payable_prep": false,
     "student_program_id": 504,
     "lesson_status": "scheduled",
-    "did_teacher_attend": null
+    "did_teacher_attend": null,
+    "email": "liam.chen@example.com",
+    "password": "liamchen21"
   },
   {
     "lesson_id": 15,
@@ -298,7 +325,9 @@
     "is_payable_prep": false,
     "student_program_id": 505,
     "lesson_status": "scheduled",
-    "did_teacher_attend": null
+    "did_teacher_attend": null,
+    "email": "noah.patel@example.com",
+    "password": "noahpatel77"
   },
   {
     "lesson_id": 16,
@@ -318,8 +347,8 @@
     "is_payable_prep": false,
     "student_program_id": 505,
     "lesson_status": "scheduled",
-    "did_teacher_attend": null
+    "did_teacher_attend": null,
+    "email": "noah.patel@example.com",
+    "password": "noahpatel77"
   }
-]
-
 ]
